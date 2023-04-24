@@ -21,6 +21,7 @@ class _ListPerangkatState extends State<ListPerangkat> {
   String searchValue = '';
 
   late String _docClusterId;
+  bool isSelected = true;
   var idSelected = 0;
   var icon = Icons;
   late List<ItemChipBar> _chipBarList;
@@ -62,7 +63,7 @@ class _ListPerangkatState extends State<ListPerangkat> {
         ),
       ),
       ItemChipBar(
-        const Icon(Icons.wind_power),
+        const Icon(Icons.wind_power_rounded),
         2,
         'PLTD',
         BuilderPerangkat(
@@ -187,32 +188,76 @@ class _ListPerangkatState extends State<ListPerangkat> {
 //scroll
   listChip() {
     return Row(
-      children: _chipBarList
-          .map(
-            (item) => Padding(
-              padding: const EdgeInsets.only(left: 16.0, bottom: 0),
-              child: ChoiceChip(
-                label: Text(
-                  item.title,
-                  style: const TextStyle(fontSize: 14),
-                ),
-                avatar: InkWell(
-                  onTap: () {},
-                  child: const Icon(
-                    Icons.wind_power,
-                    size: 20,
-                  ),
-                ),
-                selected: idSelected == item.id,
-                labelStyle: TextStyle(
-                  color: idSelected == item.id ? Colors.white : Colors.black,
-                ),
-                selectedColor: const Color.fromARGB(225, 18, 149, 117),
-                onSelected: (_) => setState(() => idSelected = item.id),
-              ),
-            ),
-          )
-          .toList(),
+      children: [
+        const SizedBox(width: 15),
+        InputChip(
+          avatar: const Icon(Icons.wind_power),
+          label: const Text(
+            'PLTB',
+            style: TextStyle(fontSize: 14),
+          ),
+          labelStyle: TextStyle(
+            color: isSelected ? Colors.white : Colors.black,
+          ),
+          onSelected: (_) => setState(() => idSelected = 0),
+          backgroundColor: const Color.fromARGB(225, 18, 149, 117),
+        ),
+        const SizedBox(width: 15),
+        InputChip(
+          avatar: const Icon(Icons.solar_power),
+          label: const Text(
+            'PLTS',
+            style: TextStyle(fontSize: 14),
+          ),
+          onSelected: (bool value) {},
+        ),
+        const SizedBox(width: 15),
+        InputChip(
+          avatar: const Icon(Icons.energy_savings_leaf),
+          label: const Text(
+            'PLTD',
+            style: TextStyle(fontSize: 14),
+          ),
+          onSelected: (bool value) {},
+        ),
+        const SizedBox(width: 15),
+        InputChip(
+          avatar: const Icon(Icons.battery_6_bar),
+          label: const Text(
+            'Baterai',
+            style: TextStyle(fontSize: 14),
+          ),
+          onSelected: (bool value) {},
+        ),
+        const SizedBox(width: 15),
+        InputChip(
+          avatar: const Icon(Icons.cloud),
+          label: const Text(
+            'Weather Station',
+            style: TextStyle(fontSize: 14),
+          ),
+          onSelected: (bool value) {},
+        ),
+        const SizedBox(width: 15),
+        InputChip(
+          avatar: const Icon(Icons.lightbulb),
+          label: const Text(
+            'Rumah Energi',
+            style: TextStyle(fontSize: 14),
+          ),
+          onSelected: (bool value) {},
+        ),
+        const SizedBox(width: 15),
+        InputChip(
+          avatar: const Icon(Icons.warehouse),
+          label: const Text(
+            'Warehouse',
+            style: TextStyle(fontSize: 14),
+          ),
+          onSelected: (bool value) {},
+        ),
+        const SizedBox(width: 15),
+      ],
     );
   }
 }
